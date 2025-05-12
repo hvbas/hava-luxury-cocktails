@@ -1,0 +1,159 @@
+<!-- Dashboard Header -->
+<div class="py-4 mb-4 rounded-3" style="background-color: var(--darker-color); border-bottom: 1px solid var(--gold-dark);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="fw-bold"><i class="fas fa-glass-martini-alt me-2" style="color: var(--gold);"></i>Dashboard</h1>
+        <p class="lead mb-0">Manage your cocktail recipes and add new ones.</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <a href="/cocktails/add" class="btn btn-primary">
+          <i class="fas fa-plus me-2"></i>Add New Recipe
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Dashboard Stats -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-4">
+      <div class="card dashboard-card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="icon-box rounded-circle p-3 me-3" style="background: var(--gold); color: var(--darker-color);">
+              <i class="fas fa-glass-martini-alt"></i>
+            </div>
+            <div>
+              <h6 class="mb-1">Total Recipes</h6>
+              <h3 class="mb-0">{{cocktails.length}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card dashboard-card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="icon-box rounded-circle p-3 me-3" style="background: var(--gold); color: var(--darker-color);">
+              <i class="fas fa-star"></i>
+            </div>
+            <div>
+              <h6 class="mb-1">Average Rating</h6>
+              <h3 class="mb-0">
+                {{#if cocktails.length}}
+                  {{#with (calculateAverageRating cocktails)}}
+                    {{this}}
+                  {{else}}
+                    0.0
+                  {{/with}}
+                {{else}}
+                  0.0
+                {{/if}}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card dashboard-card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="icon-box rounded-circle p-3 me-3" style="background: var(--gold); color: var(--darker-color);">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div>
+              <h6 class="mb-1">Favorites</h6>
+              <h3 class="mb-0">
+                {{#if cocktails.length}}
+                  {{#with (calculateTotalFavorites cocktails)}}
+                    {{this}}
+                  {{else}}
+                    0
+                  {{/with}}
+                {{else}}
+                  0
+                {{/if}}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Cocktails -->
+  <div class="card">
+    <div class="card-header py-3">
+      <h4 class="mb-0"><i class="fas fa-list me-2" style="color: var(--gold);"></i>My Cocktail Recipes</h4>
+    </div>
+    <div class="card-body p-0">
+      {{#if cocktails.length}}
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Recipe Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Date Added</th>
+                <th scope="col" class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each cocktails}}
+              <tr>
+                <td>
+                  <img src="/images/cocktails/{{this.image}}" alt="{{this.name}}" class="rounded" width="50" height="50" style="object-fit: cover;">
+                </td>
+                <td>
+                  <a href="/cocktails/{{this._id}}" class="text-decoration-none">{{this.name}}</a>
+                </td>
+                <td>
+                  <span class="badge bg-primary">{{this.category}}</span>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <i class="fas fa-star text-warning me-1"></i>
+                    <span>{{this.averageRating}}</span>
+                    <small class="text-muted ms-1">({{this.ratings.length}})</small>
+                  </div>
+                </td>
+                <td>
+                  <small class="text-muted">{{formatDate this.createdAt}}</small>
+                </td>
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm">
+                    <a href="/cocktails/{{this._id}}" class="btn btn-outline-primary">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="/cocktails/edit/{{this._id}}" class="btn btn-outline-secondary">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="/cocktails/delete/{{this._id}}" class="btn btn-outline-danger delete-link">
+                      <i class="fas fa-trash-alt"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      {{else}}
+        <div class="text-center py-5">
+          <i class="fas fa-cocktail fa-4x mb-3" style="color: var(--gold);"></i>
+          <h3>You haven't added any recipes yet</h3>
+          <p class="mb-4">Start by adding your first cocktail recipe!</p>
+          <a href="/cocktails/add" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Add New Recipe
+          </a>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

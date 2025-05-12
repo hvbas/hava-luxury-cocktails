@@ -1,0 +1,143 @@
+<!-- Edit Cocktail Header -->
+<div class="py-4 mb-4 bg-light rounded-3">
+  <div class="container">
+    <h1 class="fw-bold"><i class="fas fa-edit me-2"></i>Kokteyl Tarifini Düzenle</h1>
+    <p class="lead">{{cocktail.name}} tarifini güncelleyin.</p>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <form action="/cocktails/{{cocktail._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+        <div class="row g-4">
+          <!-- Basic Info Section -->
+          <div class="col-md-6">
+            <h4 class="mb-3">Temel Bilgiler</h4>
+            <div class="mb-3">
+              <label for="name" class="form-label">Kokteyl Adı</label>
+              <input type="text" class="form-control" id="name" name="name" value="{{cocktail.name}}" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="description" class="form-label">Kısa Açıklama</label>
+              <textarea class="form-control" id="description" name="description" rows="3" required>{{cocktail.description}}</textarea>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="category" class="form-label">Kategori</label>
+                <select class="form-select" id="category" name="category" required>
+                  {{#each categories}}
+                  <option value="{{this}}" {{#if (eq ../cocktail.category this)}}selected{{/if}}>{{this}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label for="difficulty" class="form-label">Zorluk Derecesi</label>
+                <select class="form-select" id="difficulty" name="difficulty" required>
+                  {{#each difficulties}}
+                  <option value="{{this}}" {{#if (eq ../cocktail.difficulty this)}}selected{{/if}}>{{this}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="prepTime" class="form-label">Hazırlama Süresi (dakika)</label>
+              <input type="number" class="form-control" id="prepTime" name="prepTime" min="1" value="{{cocktail.prepTime}}" required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="image" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Cocktail Image</label>
+              <input type="file" class="form-control" id="image" name="image" accept="image/*" style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream);">
+              <div class="form-text" style="color: var(--cream); opacity: 0.7;">Current image: {{cocktail.image}}. If you don't upload a new image, the current one will be preserved.</div>
+              <div class="mt-2">
+                <img src="/images/cocktails/{{cocktail.image}}" alt="{{cocktail.name}}" class="img-thumbnail" style="max-height: 150px;">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ingredients Section -->
+          <div class="col-md-6">
+            <h4 class="mb-3">Malzemeler</h4>
+            <div id="ingredients-container">
+              {{#each cocktail.ingredients}}
+              <div class="row ingredient-row mb-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="ingredientNames[]" value="{{this.name}}" required>
+                </div>
+                <div class="col-md-5">
+                  <input type="text" class="form-control" name="ingredientAmounts[]" value="{{this.amount}}" required>
+                </div>
+                <div class="col-md-1">
+                  <button type="button" class="btn btn-outline-danger remove-ingredient"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <button type="button" id="add-ingredient" class="btn btn-outline-primary mt-2">
+              <i class="fas fa-plus me-2"></i>Malzeme Ekle
+            </button>
+            
+            <h4 class="mt-4 mb-3">Hazırlanışı</h4>
+            <div class="mb-3">
+              <textarea class="form-control" id="instructions" name="instructions" rows="6" required>{{cocktail.instructions}}</textarea>
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg px-5">
+              <i class="fas fa-save me-2"></i>Değişiklikleri Kaydet
+            </button>
+            <a href="/cocktails/{{cocktail._id}}" class="btn btn-outline-secondary btn-lg px-5 ms-2">
+              <i class="fas fa-times me-2"></i>İptal
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add ingredient row
+    document.getElementById('add-ingredient').addEventListener('click', function() {
+      const container = document.getElementById('ingredients-container');
+      const newRow = document.createElement('div');
+      newRow.className = 'row ingredient-row mb-3';
+      newRow.innerHTML = `
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="ingredientNames[]" placeholder="Malzeme adı" required>
+        </div>
+        <div class="col-md-5">
+          <input type="text" class="form-control" name="ingredientAmounts[]" placeholder="Miktar (örn: 30ml)" required>
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="btn btn-outline-danger remove-ingredient"><i class="fas fa-times"></i></button>
+        </div>
+      `;
+      container.appendChild(newRow);
+      
+      // Add event listener to the new remove button
+      newRow.querySelector('.remove-ingredient').addEventListener('click', function() {
+        if (container.children.length > 1) {
+          container.removeChild(newRow);
+        }
+      });
+    });
+    
+    // Remove ingredient row
+    document.querySelectorAll('.remove-ingredient').forEach(button => {
+      button.addEventListener('click', function() {
+        const container = document.getElementById('ingredients-container');
+        if (container.children.length > 1) {
+          container.removeChild(this.closest('.ingredient-row'));
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,294 @@
+<!-- Cocktail Detail -->
+<div class="container py-4">
+  <div class="row">
+    <!-- Cocktail Image and Basic Info -->
+    <div class="col-lg-5 mb-4 mb-lg-0">
+      <img src="/images/cocktails/{{cocktail.image}}" alt="{{cocktail.name}}" class="img-fluid rounded shadow cocktail-detail-img w-100">
+      
+      <div class="card border-0 shadow-sm mt-4">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Tarif Bilgileri</h5>
+          <div class="row g-3 mt-2">
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-light rounded-circle p-2 me-3">
+                  <i class="fas fa-tag text-primary"></i>
+                </div>
+                <div>
+                  <small class="text-muted d-block">Kategori</small>
+                  <span>{{cocktail.category}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-light rounded-circle p-2 me-3">
+                  <i class="fas fa-clock text-primary"></i>
+                </div>
+                <div>
+                  <small class="text-muted d-block">Hazırlama Süresi</small>
+                  <span>{{cocktail.prepTime}} dakika</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-light rounded-circle p-2 me-3">
+                  <i class="fas fa-signal text-primary"></i>
+                </div>
+                <div>
+                  <small class="text-muted d-block">Zorluk</small>
+                  <span>{{cocktail.difficulty}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-light rounded-circle p-2 me-3">
+                  <i class="fas fa-calendar-alt text-primary"></i>
+                </div>
+                <div>
+                  <small class="text-muted d-block">Eklenme Tarihi</small>
+                  <span>{{formatDate cocktail.createdAt}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- User Info and Actions -->
+      <div class="card border-0 shadow-sm mt-4">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="/images/avatars/{{cocktail.user.avatar}}" alt="{{cocktail.user.name}}" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0">{{cocktail.user.name}}</h6>
+              <small class="text-muted">Tarif Sahibi</small>
+            </div>
+          </div>
+          
+          <div class="d-flex flex-wrap gap-2">
+            {{#if user}}
+              {{#if (eq user._id cocktail.user._id)}}
+                <a href="/cocktails/edit/{{cocktail._id}}" class="btn btn-sm btn-outline-primary">
+                  <i class="fas fa-edit me-1"></i>Düzenle
+                </a>
+                <form action="/cocktails/{{cocktail._id}}?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Bu tarifi silmek istediğinize emin misiniz?');">
+                  <button type="submit" class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-trash-alt me-1"></i>Sil
+                  </button>
+                </form>
+              {{else}}
+                {{#if isFavorite}}
+                  <form action="/users/favorites/{{cocktail._id}}?_method=DELETE" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                      <i class="fas fa-heart me-1"></i>Favorilerden Çıkar
+                    </button>
+                  </form>
+                {{else}}
+                  <form action="/users/favorites/{{cocktail._id}}" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                      <i class="far fa-heart me-1"></i>Favorilere Ekle
+                    </button>
+                  </form>
+                {{/if}}
+              {{/if}}
+            {{else}}
+              <a href="/users/login" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-sign-in-alt me-1"></i>Favorilere eklemek için giriş yapın
+              </a>
+            {{/if}}
+            <button class="btn btn-sm btn-outline-secondary" onclick="window.print()">
+              <i class="fas fa-print me-1"></i>Yazdır
+            </button>
+            <button class="btn btn-sm btn-outline-info" onclick="shareRecipe()">
+              <i class="fas fa-share-alt me-1"></i>Paylaş
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Cocktail Details -->
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h1 class="card-title mb-3">{{cocktail.name}}</h1>
+          
+          <!-- Rating Section -->
+          <div class="d-flex align-items-center mb-4">
+            <div class="me-3">
+              <span class="h5 mb-0 me-2">{{cocktail.averageRating}}</span>
+              <div class="rating d-inline-block">
+                {{#times 5}}
+                  {{#if (lt @index ../cocktail.averageRating)}}
+                    <i class="fas fa-star text-warning"></i>
+                  {{else}}
+                    <i class="far fa-star text-warning"></i>
+                  {{/if}}
+                {{/times}}
+              </div>
+              <span class="text-muted ms-2">({{cocktail.ratings.length}} değerlendirme)</span>
+            </div>
+            
+            {{#if user}}
+              {{#unless (eq user._id cocktail.user._id)}}
+                <form action="/cocktails/{{cocktail._id}}/rate" method="POST" class="ms-auto">
+                  <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5" {{#if (eq userRating 5)}}checked{{/if}} />
+                    <label for="star5" title="5 yıldız"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star4" name="rating" value="4" {{#if (eq userRating 4)}}checked{{/if}} />
+                    <label for="star4" title="4 yıldız"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star3" name="rating" value="3" {{#if (eq userRating 3)}}checked{{/if}} />
+                    <label for="star3" title="3 yıldız"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star2" name="rating" value="2" {{#if (eq userRating 2)}}checked{{/if}} />
+                    <label for="star2" title="2 yıldız"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="star1" name="rating" value="1" {{#if (eq userRating 1)}}checked{{/if}} />
+                    <label for="star1" title="1 yıldız"><i class="fas fa-star"></i></label>
+                  </div>
+                  <button type="submit" class="btn btn-sm btn-primary ms-2">Puanla</button>
+                </form>
+              {{/unless}}
+            {{/if}}
+          </div>
+          
+          <p class="lead mb-4">{{cocktail.description}}</p>
+          
+          <!-- Ingredients -->
+          <h4 class="mb-3"><i class="fas fa-list-ul me-2 text-primary"></i>Malzemeler</h4>
+          <ul class="ingredient-list mb-4">
+            {{#each cocktail.ingredients}}
+              <li class="py-2">
+                <div class="d-flex justify-content-between">
+                  <span>{{this.name}}</span>
+                  <span class="text-muted">{{this.amount}}</span>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+          
+          <!-- Instructions -->
+          <h4 class="mb-3"><i class="fas fa-mortar-pestle me-2 text-primary"></i>Hazırlanışı</h4>
+          <div class="instructions mb-4">
+            {{#each (split cocktail.instructions "\n")}}
+              <p>{{this}}</p>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Comments Section -->
+      <div class="card border-0 shadow-sm mt-4">
+        <div class="card-body p-4">
+          <h4 class="mb-4"><i class="fas fa-comments me-2 text-primary"></i>Yorumlar ({{cocktail.comments.length}})</h4>
+          
+          {{#if user}}
+            <form action="/cocktails/{{cocktail._id}}/comments" method="POST" class="mb-4">
+              <div class="mb-3">
+                <textarea class="form-control" name="comment" rows="3" placeholder="Yorumunuzu yazın..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Yorum Yap</button>
+            </form>
+          {{else}}
+            <div class="alert alert-info mb-4">
+              <i class="fas fa-info-circle me-2"></i>Yorum yapmak için <a href="/users/login" class="alert-link">giriş yapın</a>.
+            </div>
+          {{/if}}
+          
+          {{#if cocktail.comments.length}}
+            <div class="comments-list">
+              {{#each cocktail.comments}}
+                <div class="comment">
+                  <div class="d-flex mb-2">
+                    <img src="/images/avatars/{{this.avatar}}" alt="{{this.name}}" class="rounded-circle me-2" width="40" height="40">
+                    <div>
+                      <h6 class="mb-0">{{this.name}}</h6>
+                      <small class="text-muted">{{formatDate this.date}}</small>
+                    </div>
+                    
+                    {{#if (eq ../user._id this.user)}}
+                      <form action="/cocktails/{{../cocktail._id}}/comments/{{this._id}}?_method=DELETE" method="POST" class="ms-auto">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bu yorumu silmek istediğinize emin misiniz?');">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </form>
+                    {{/if}}
+                  </div>
+                  <p class="mb-0">{{this.text}}</p>
+                </div>
+              {{/each}}
+            </div>
+          {{else}}
+            <div class="text-center py-4">
+              <i class="far fa-comment-dots fa-3x text-muted mb-3"></i>
+              <p class="mb-0">Henüz yorum yapılmamış. İlk yorumu siz yapın!</p>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Function to handle social sharing
+  function shareRecipe() {
+    if (navigator.share) {
+      navigator.share({
+        title: '{{cocktail.name}} - Kokteyl Tarifi',
+        text: '{{cocktail.description}}',
+        url: window.location.href
+      })
+      .catch(error => console.log('Paylaşım iptal edildi', error));
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      const shareUrl = encodeURIComponent(window.location.href);
+      const shareTitle = encodeURIComponent('{{cocktail.name}} - Kokteyl Tarifi');
+      
+      const shareModal = document.createElement('div');
+      shareModal.className = 'modal fade';
+      shareModal.id = 'shareModal';
+      shareModal.innerHTML = `
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Tarifi Paylaş</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex justify-content-center gap-3">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank" class="btn btn-outline-primary">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=${shareTitle}&url=${shareUrl}" target="_blank" class="btn btn-outline-info">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://wa.me/?text=${shareTitle}%20${shareUrl}" target="_blank" class="btn btn-outline-success">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:?subject=${shareTitle}&body=${shareUrl}" class="btn btn-outline-secondary">
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(shareModal);
+      const modal = new bootstrap.Modal(document.getElementById('shareModal'));
+      modal.show();
+    }
+  }
+  
+  // Initialize star rating functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const starInputs = document.querySelectorAll('.star-rating input');
+    starInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        document.querySelector('.star-rating + button').classList.add('btn-success');
+      });
+    });
+  });
+</script>

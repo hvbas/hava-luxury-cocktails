@@ -1,0 +1,72 @@
+/* Image display fixes */
+.cocktail-img {
+  height: 200px;
+  object-fit: cover;
+  background-color: rgba(30, 30, 30, 0.8);
+  border-bottom: 1px solid var(--gold-dark);
+}
+
+/* Fix for missing images */
+.cocktail-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background-color: rgba(20, 20, 20, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Improve text visibility */
+.card-title {
+  color: var(--gold) !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+.card-text {
+  color: var(--cream) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+.badge {
+  font-size: 0.8rem !important;
+  padding: 0.4rem 0.6rem !important;
+  background-color: var(--gold) !important;
+  color: var(--darker-color) !important;
+  font-weight: 500 !important;
+}
+
+/* Fix for rating display */
+.rating {
+  background-color: rgba(20, 20, 20, 0.8);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--gold-dark);
+}
+
+.rating span {
+  color: var(--cream) !important;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+/* Fix for small text */
+small {
+  color: var(--cream) !important;
+  font-weight: 500 !important;
+}
+
+/* Fix for View Recipe button */
+.btn-view-recipe {
+  background-color: var(--gold) !important;
+  color: var(--darker-color) !important;
+  border: none !important;
+  font-weight: 500 !important;
+  padding: 0.3rem 0.8rem !important;
+}

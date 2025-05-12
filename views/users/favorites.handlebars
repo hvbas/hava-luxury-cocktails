@@ -1,0 +1,65 @@
+<!-- Favorites Header -->
+<div class="py-4 mb-4 rounded-3" style="background-color: var(--darker-color); border-bottom: 1px solid var(--gold-dark);">
+  <div class="container">
+    <h1 class="fw-bold"><i class="fas fa-heart" style="color: var(--gold); margin-right: 0.5rem;"></i>My Favorite Recipes</h1>
+    <p class="lead mb-0">Cocktail recipes you've liked and saved.</p>
+  </div>
+</div>
+
+<div class="container">
+  {{#if cocktails.length}}
+    <div class="row g-4">
+      {{#each cocktails}}
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm cocktail-card">
+          <div class="position-relative">
+            <img src="/images/cocktails/{{image}}" class="card-img-top cocktail-img" alt="{{name}}">
+            <form action="/users/favorites/{{_id}}?_method=DELETE" method="POST" class="position-absolute" style="top: 10px; right: 10px;">
+              <button type="submit" class="btn btn-sm btn-danger" title="Remove from Favorites">
+                <i class="fas fa-heart"></i>
+              </button>
+            </form>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge bg-primary">{{category}}</span>
+              <div class="rating">
+                <i class="fas fa-star text-warning"></i>
+                <span>{{averageRating}}</span>
+              </div>
+            </div>
+            <h5 class="card-title">{{name}}</h5>
+            <p class="card-text text-muted">{{truncate description 100}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">
+                <i class="fas fa-clock me-1"></i>{{prepTime}} minutes
+              </small>
+              <small class="text-muted">
+                <i class="fas fa-signal me-1"></i>{{difficulty}}
+              </small>
+            </div>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0">
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">
+                <img src="/images/avatars/{{user.avatar}}" alt="{{user.name}}" class="rounded-circle me-1" width="20" height="20">
+                {{user.name}}
+              </small>
+              <a href="/cocktails/{{_id}}" class="btn btn-sm btn-outline-primary">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="text-center py-5">
+      <i class="far fa-heart fa-4x text-muted mb-3"></i>
+      <h3>You don't have any favorite recipes yet</h3>
+      <p class="mb-4">You can add recipes you like to favorites and view them here.</p>
+      <a href="/cocktails" class="btn btn-primary">
+        <i class="fas fa-search me-2"></i>Browse Recipes
+      </a>
+    </div>
+  {{/if}}
+</div>

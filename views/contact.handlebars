@@ -1,0 +1,105 @@
+<!-- Contact Header -->
+<div class="py-5 mb-5" style="background-color: rgba(10, 10, 10, 0.95); border-bottom: 1px solid var(--gold-dark);">
+  <div class="container">
+    <h1 class="fw-bold" data-aos="fade-up" style="color: var(--gold); font-family: 'Playfair Display', serif;"><i class="fas fa-envelope me-2"></i>Contact Us</h1>
+    <p class="lead mb-0" data-aos="fade-up" data-aos-delay="200" style="color: var(--cream); font-family: 'Montserrat', sans-serif;">Reach out to us with your questions, suggestions, and feedback.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-lg mb-4 mb-lg-0" style="background-color: rgba(15, 15, 15, 0.95); border: 1px solid var(--gold-dark);">
+        <div class="card-body p-4">
+          <h2 class="mb-4" style="color: var(--gold); font-family: 'Playfair Display', serif;">Contact Form</h2>
+          <form action="/contact" method="POST">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="name" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Full Name</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="email" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Email Address</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Your email address" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="subject" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Subject</label>
+              <select class="form-select" id="subject" name="subject" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+                <option value="" selected disabled>Select a subject</option>
+                <option value="General Information">General Information</option>
+                <option value="Technical Support">Technical Support</option>
+                <option value="Partnership Proposal">Partnership Proposal</option>
+                <option value="Suggestion/Feedback">Suggestion/Feedback</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            
+            <div class="mb-4">
+              <label for="message" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Your Message</label>
+              <textarea class="form-control" id="message" name="message" rows="6" placeholder="Write your message here" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream);"></textarea>
+            </div>
+            
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="agreement" name="agreement" required>
+              <label class="form-check-label" for="agreement" style="color: var(--cream); font-size: 0.9rem;">
+                I consent to the processing of my personal data and I have read and agree to the <a href="/privacy" class="text-decoration-none" style="color: var(--gold);">Privacy Policy</a>.
+              </label>
+            </div>
+            
+            <button type="submit" class="btn" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); color: var(--dark); font-family: 'Montserrat', sans-serif; font-weight: 500; padding: 10px 25px; border: none; transition: all 0.3s ease;">
+              <i class="fas fa-paper-plane me-2"></i>Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm mb-4" style="background-color: rgba(15, 15, 15, 0.95); border: 1px solid var(--gold-dark);">
+        <div class="card-body p-4">
+          <h4 class="mb-3" style="color: var(--gold); font-family: 'Playfair Display', serif;"><i class="fas fa-map-marker-alt me-2" style="color: var(--gold);"></i>Address</h4>
+          <p class="mb-0" style="color: var(--cream);">Luxury Cocktails<br>123 Cocktail Avenue<br>Soho, London<br>United Kingdom</p>
+        </div>
+      </div>
+      
+      <div class="card border-0 shadow-sm mb-4" style="background-color: rgba(15, 15, 15, 0.95); border: 1px solid var(--gold-dark);">
+        <div class="card-body p-4">
+          <h4 class="mb-3" style="color: var(--gold); font-family: 'Playfair Display', serif;"><i class="fas fa-phone me-2" style="color: var(--gold);"></i>Phone</h4>
+          <p class="mb-0" style="color: var(--cream);">+44 20 1234 5678</p>
+        </div>
+      </div>
+      
+      <div class="card border-0 shadow-sm mb-4" style="background-color: rgba(15, 15, 15, 0.95); border: 1px solid var(--gold-dark);">
+        <div class="card-body p-4">
+          <h4 class="mb-3" style="color: var(--gold); font-family: 'Playfair Display', serif;"><i class="fas fa-envelope me-2" style="color: var(--gold);"></i>Email</h4>
+          <p class="mb-0" style="color: var(--cream);">info@luxurycocktails.com</p>
+        </div>
+      </div>
+      
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h4 class="mb-3" style="color: var(--gold); font-family: 'Playfair Display', serif;"><i class="fas fa-clock me-2" style="color: var(--gold);"></i>Business Hours</h4>
+          <ul class="list-unstyled mb-0" style="color: var(--cream);">
+            <li class="mb-2">Monday - Friday: 9:00 AM - 6:00 PM</li>
+            <li>Saturday: 10:00 AM - 2:00 PM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Map Section -->
+  <div class="mt-5">
+    <div class="card border-0 shadow-lg" style="background-color: rgba(15, 15, 15, 0.95); border: 1px solid var(--gold-dark);">
+      <div class="card-body p-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48173.94304452296!2d29.0272979!3d40.9912376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7650656bd63%3A0x8ca058b28c20b6c3!2zS2FkxLFrw7Z5LCDEsHN0YW5idWw!5e0!3m2!1str!2str!4v1620569762145!5m2!1str!2str" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

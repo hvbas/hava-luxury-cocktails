@@ -1,0 +1,6 @@
+<div class="d-flex mt-2">
+  <a href="/cocktails/{{cocktail._id}}" class="btn btn-sm me-2" style="background-color: var(--gold); color: var(--darker-color); font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px; font-size: 0.8rem; flex: 1;">VIEW RECIPE</a>
+  {{#if (eq cocktail.user._id ../user._id)}}
+  <a href="/cocktails/delete/{{cocktail._id}}" class="btn btn-sm delete-link" style="background-color: #dc3545; color: white; font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px; font-size: 0.8rem; flex: 1;" onclick="return confirm('Are you sure you want to delete this recipe?')">DELETE</a>
+  {{/if}}
+</div>

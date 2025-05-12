@@ -1,0 +1,105 @@
+<!-- Cocktails Header -->
+<div class="py-5 mb-4" style="background-color: rgba(10, 10, 10, 0.8); border-bottom: 1px solid var(--gold-dark);" data-aos="fade-down" data-aos-duration="800">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8 text-center text-md-start">
+        <div style="width: 60px; height: 2px; background: var(--gold); margin-bottom: 1.5rem;" class="d-none d-md-block"></div>
+        <h1 style="font-family: 'Playfair Display', serif; color: var(--gold); letter-spacing: 2px;">Cocktail Recipes</h1>
+        <p style="color: var(--cream); font-family: 'Montserrat', sans-serif; margin-top: 0.5rem;">Discover all cocktail recipes or add your own signature creations.</p>
+      </div>
+      <div class="col-md-4 text-center text-md-end mt-4 mt-md-0">
+        {{#if user}}
+        <a href="/cocktails/add" class="btn px-4 py-2" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--darker-color); border: none; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-weight: 500;">
+          <i class="fas fa-plus me-2"></i>ADD NEW RECIPE
+        </a>
+        {{else}}
+        <a href="/users/login" class="btn px-4 py-2" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--darker-color); border: none; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-weight: 500;">
+          <i class="fas fa-sign-in-alt me-2"></i>LOGIN TO ADD RECIPE
+        </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search and Filter Section -->
+<div class="container mb-5" data-aos="fade-up" data-aos-duration="800">
+  <div class="card" style="border: 1px solid var(--gold-dark); background-color: rgba(15, 15, 15, 0.8);">
+    <div class="card-body p-4">
+      <form action="/cocktails" method="GET" class="row g-3">
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-text" style="background-color: var(--gold); color: var(--darker-color); border: none;"><i class="fas fa-search"></i></span>
+            <input type="text" class="form-control" name="search" placeholder="Search recipes..." value="{{search}}" style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <select class="form-select" name="category" style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+            <option value="all" {{#if (eq category 'all')}}selected{{/if}}>All Categories</option>
+            {{#each categories}}
+            <option value="{{this}}" {{#if (eq ../category this)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn w-100" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--darker-color); border: none; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; height: 45px;">FILTER</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Cocktails List -->
+<div class="container">
+  {{#if cocktails.length}}
+  <div class="row g-4">
+    {{#each cocktails}}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 border-0 shadow-sm cocktail-card">
+        <img src="/images/cocktails/{{image}}" class="card-img-top cocktail-img" alt="{{name}}">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge bg-primary">{{category}}</span>
+            <div class="rating">
+              <i class="fas fa-star text-warning"></i>
+              <span>{{averageRating}}</span>
+            </div>
+          </div>
+          <h5 class="card-title">{{name}}</h5>
+          <p class="card-text text-muted">{{truncate description 100}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small style="color: var(--cream); opacity: 0.8;">
+              <i class="fas fa-clock me-1" style="color: var(--gold);"></i>{{prepTime}} minutes
+            </small>
+            <small class="text-muted">
+              <i class="fas fa-signal me-1"></i>{{difficulty}}
+            </small>
+          </div>
+        </div>
+        <div class="card-footer bg-white border-0 pt-0">
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              <img src="/images/avatars/{{user.avatar}}" alt="{{user.name}}" class="rounded-circle me-1" width="20" height="20">
+              {{user.name}}
+            </small>
+            <div class="btn-group">
+              <a href="/cocktails/{{_id}}" class="btn btn-sm" style="border: 1px solid var(--gold); color: var(--gold); background-color: transparent; font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px; font-size: 0.8rem;">VIEW RECIPE</a>
+              {{#if (eq user._id ../user._id)}}
+              <a href="/cocktails/delete/{{_id}}" class="btn btn-sm delete-link" style="border: 1px solid #dc3545; color: #dc3545; background-color: transparent; font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px; font-size: 0.8rem;">DELETE</a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{else}}
+  <div class="text-center py-5">
+    <i class="fas fa-cocktail fa-4x mb-4" style="color: var(--gold);"></i>
+    <h3 style="font-family: 'Playfair Display', serif; color: var(--gold); letter-spacing: 1px;">No recipes found matching your criteria</h3>
+    <p style="color: var(--cream); opacity: 0.8;">Please try a different search term or category.</p>
+    <a href="/cocktails" class="btn mt-4 px-4 py-2" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--darker-color); border: none; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-weight: 500;">SHOW ALL RECIPES</a>
+  </div>
+  {{/if}}
+</div>

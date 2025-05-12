@@ -1,0 +1,46 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6" data-aos="fade-up" data-aos-duration="1000">
+    <div class="card" style="border: 1px solid var(--gold-dark); background-color: rgba(15, 15, 15, 0.8);">
+      <div class="card-header text-center py-4">
+        <div class="mb-2" style="border-bottom: 2px solid var(--gold); width: 50px; margin: 0 auto;"></div>
+        <h3 class="mb-0" style="font-family: 'Playfair Display', serif; color: var(--gold);"><i class="fas fa-user-plus me-2"></i>REGISTER</h3>
+      </div>
+      <div class="card-body p-4">
+        <form action="/users/register" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Full Name</label>
+            <div class="input-group">
+              <span class="input-group-text" style="background-color: var(--gold); color: var(--darker-color); border: none;"><i class="fas fa-user"></i></span>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" value="{{name}}" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Email Address</label>
+            <div class="input-group">
+              <span class="input-group-text" style="background-color: var(--gold); color: var(--darker-color); border: none;"><i class="fas fa-envelope"></i></span>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" value="{{email}}" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Password</label>
+            <div class="input-group">
+              <span class="input-group-text" style="background-color: var(--gold); color: var(--darker-color); border: none;"><i class="fas fa-lock"></i></span>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password (minimum 6 characters)" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+            </div>
+          </div>
+          <div class="mb-4">
+            <label for="password2" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Confirm Password</label>
+            <div class="input-group">
+              <span class="input-group-text" style="background-color: var(--gold); color: var(--darker-color); border: none;"><i class="fas fa-lock"></i></span>
+              <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm your password" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+            </div>
+          </div>
+          <button type="submit" class="btn w-100 py-3" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--darker-color); border: none; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; font-weight: 500; font-size: 0.9rem; margin-top: 1rem;">CREATE ACCOUNT</button>
+        </form>
+      </div>
+      <div class="card-footer text-center py-3" style="background-color: rgba(15, 15, 15, 0.8); border-top: 1px solid var(--gold-dark);">
+        <p class="mb-0" style="color: var(--cream);">Already have an account? <a href="/users/login" style="color: var(--gold); text-decoration: none; font-weight: 500;">LOGIN <i class="fas fa-arrow-right ms-1" style="font-size: 0.8rem;"></i></a></p>
+      </div>
+    </div>
+  </div>
+</div>

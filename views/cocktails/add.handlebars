@@ -1,0 +1,154 @@
+<!-- Add Cocktail Header -->
+<div class="py-5 mb-4" style="background-color: rgba(10, 10, 10, 0.8); border-bottom: 1px solid var(--gold-dark);" data-aos="fade-down" data-aos-duration="800">
+  <div class="container text-center">
+    <div style="width: 60px; height: 2px; background: var(--gold); margin: 0 auto 1.5rem;"></div>
+    <h1 style="font-family: 'Playfair Display', serif; color: var(--gold); letter-spacing: 2px;"><i class="fas fa-plus-circle me-2"></i>Add New Cocktail Recipe</h1>
+    <p style="color: var(--cream); font-family: 'Montserrat', sans-serif; max-width: 700px; margin: 1rem auto 0;">Create your exclusive cocktail recipe and share it with the luxury cocktail community.</p>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="card" style="border: 1px solid var(--gold-dark); background-color: rgba(15, 15, 15, 0.8);" data-aos="fade-up" data-aos-duration="1000">
+    <div class="card-body p-5">
+      <form action="/cocktails" method="POST" enctype="multipart/form-data">
+        <div class="row g-4">
+          <!-- Basic Info Section -->
+          <div class="col-md-6">
+            <h4 class="mb-4" style="font-family: 'Playfair Display', serif; color: var(--gold); border-bottom: 1px solid var(--gold-dark); padding-bottom: 0.5rem;">Basic Information</h4>
+            <div class="mb-3">
+              <label for="name" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Cocktail Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter cocktail name" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+            </div>
+            
+            <div class="mb-3">
+              <label for="description" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Brief Description</label>
+              <textarea class="form-control" id="description" name="description" rows="3" placeholder="Write a brief description about your cocktail" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream);"></textarea>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="category" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Category</label>
+                <select class="form-select" id="category" name="category" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+                  <option value="" selected disabled>Select category</option>
+                  {{#each categories}}
+                  <option value="{{this}}">{{this}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label for="difficulty" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Difficulty Level</label>
+                <select class="form-select" id="difficulty" name="difficulty" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+                  <option value="" selected disabled>Select difficulty</option>
+                  {{#each difficulties}}
+                  <option value="{{this}}">{{this}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="prepTime" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Preparation Time (minutes)</label>
+              <input type="number" class="form-control" id="prepTime" name="prepTime" min="1" placeholder="Preparation time in minutes" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+            </div>
+            
+            <div class="mb-3">
+              <label for="image" class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Cocktail Image</label>
+              <input type="file" class="form-control" id="image" name="image" accept="image/*" style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream);">
+              <div class="form-text" style="color: var(--cream); opacity: 0.7;">Maximum file size: 2MB. Recommended size: 800x600px.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label" style="color: var(--gold); letter-spacing: 1px; font-size: 0.9rem;">Visibility</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="isPublic" id="isPublicTrue" value="true" checked style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark);">
+                <label class="form-check-label" for="isPublicTrue" style="color: var(--cream);">
+                  <i class="fas fa-globe me-1"></i> Public - Everyone can see this recipe
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="isPublic" id="isPublicFalse" value="false" style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark);">
+                <label class="form-check-label" for="isPublicFalse" style="color: var(--cream);">
+                  <i class="fas fa-lock me-1"></i> Private - Only you can see this recipe
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ingredients Section -->
+          <div class="col-md-6">
+            <h4 class="mb-4" style="font-family: 'Playfair Display', serif; color: var(--gold); border-bottom: 1px solid var(--gold-dark); padding-bottom: 0.5rem;">Ingredients</h4>
+            <div id="ingredients-container">
+              <div class="row ingredient-row mb-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="ingredientNames[]" placeholder="Ingredient name" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+                </div>
+                <div class="col-md-5">
+                  <input type="text" class="form-control" name="ingredientAmounts[]" placeholder="Amount (e.g. 30ml)" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+                </div>
+                <div class="col-md-1">
+                  <button type="button" class="btn btn-outline-danger remove-ingredient"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+            <button type="button" id="add-ingredient" class="btn mt-3" style="border: 1px solid var(--gold); color: var(--gold); background-color: transparent; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 0.85rem;">
+              <i class="fas fa-plus me-2"></i>Add Ingredient
+            </button>
+            
+            <h4 class="mt-4 mb-3" style="font-family: 'Playfair Display', serif; color: var(--gold); border-bottom: 1px solid var(--gold-dark); padding-bottom: 0.5rem;">Preparation Instructions</h4>
+            <div class="mb-3">
+              <textarea class="form-control" id="instructions" name="instructions" rows="6" placeholder="Write detailed steps for preparing the cocktail" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream);"></textarea>
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <div class="col-12 text-center mt-5">
+            <button type="submit" class="btn btn-lg px-5 py-3" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--darker-color); border: none; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; font-weight: 500; font-size: 0.9rem;">
+              <i class="fas fa-save me-2"></i>SAVE RECIPE
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add ingredient row
+    document.getElementById('add-ingredient').addEventListener('click', function() {
+      const container = document.getElementById('ingredients-container');
+      const newRow = document.createElement('div');
+      newRow.className = 'row ingredient-row mb-3';
+      newRow.innerHTML = `
+        <div class="col-md-6">
+          <input type="text" class="form-control" name="ingredientNames[]" placeholder="Ingredient name" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+        </div>
+        <div class="col-md-5">
+          <input type="text" class="form-control" name="ingredientAmounts[]" placeholder="Amount (e.g. 30ml)" required style="background-color: rgba(30, 30, 30, 0.8); border: 1px solid var(--gold-dark); color: var(--cream); height: 45px;">
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="btn btn-outline-danger remove-ingredient"><i class="fas fa-times"></i></button>
+        </div>
+      `;
+      container.appendChild(newRow);
+      
+      // Add event listener to the new remove button
+      newRow.querySelector('.remove-ingredient').addEventListener('click', function() {
+        if (container.children.length > 1) {
+          container.removeChild(newRow);
+        }
+      });
+    });
+    
+    // Remove ingredient row
+    document.querySelectorAll('.remove-ingredient').forEach(button => {
+      button.addEventListener('click', function() {
+        const container = document.getElementById('ingredients-container');
+        if (container.children.length > 1) {
+          container.removeChild(this.closest('.ingredient-row'));
+        }
+      });
+    });
+  });
+</script>

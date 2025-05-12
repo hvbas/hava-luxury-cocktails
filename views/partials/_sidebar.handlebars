@@ -1,0 +1,155 @@
+<!-- Mobile Sidebar Menu -->
+<div class="sidebar-overlay"></div>
+<div class="sidebar-menu">
+  <div class="sidebar-header">
+    <a href="/" class="sidebar-brand">
+      <i class="fas fa-glass-martini-alt"></i>
+      <span>LUXURY COCKTAILS</span>
+    </a>
+    <button class="sidebar-close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <div class="sidebar-nav">
+    <div class="sidebar-nav-item">
+      <a href="/" class="sidebar-nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="sidebar-nav-item">
+      <a href="/cocktails" class="sidebar-nav-link">
+        <i class="fas fa-glass-martini-alt"></i>
+        <span>All Recipes</span>
+      </a>
+    </div>
+    
+    <div class="sidebar-category-title">
+      <span>Categories</span>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Non-Alcoholic" class="sidebar-category-link">
+        <i class="fas fa-glass-water"></i>
+        <span>Non-Alcoholic</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Vodka" class="sidebar-category-link">
+        <i class="fas fa-bottle-droplet"></i>
+        <span>Vodka</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Gin" class="sidebar-category-link">
+        <i class="fas fa-bottle-droplet"></i>
+        <span>Gin</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Rum" class="sidebar-category-link">
+        <i class="fas fa-bottle-droplet"></i>
+        <span>Rum</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Tequila" class="sidebar-category-link">
+        <i class="fas fa-bottle-droplet"></i>
+        <span>Tequila</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Whiskey" class="sidebar-category-link">
+        <i class="fas fa-bottle-droplet"></i>
+        <span>Whiskey</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Wine" class="sidebar-category-link">
+        <i class="fas fa-wine-glass"></i>
+        <span>Wine</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Liqueur" class="sidebar-category-link">
+        <i class="fas fa-bottle-droplet"></i>
+        <span>Liqueur</span>
+      </a>
+    </div>
+    <div class="sidebar-category-item">
+      <a href="/cocktails?category=Other" class="sidebar-category-link">
+        <i class="fas fa-glass-martini-alt"></i>
+        <span>Other</span>
+      </a>
+    </div>
+    
+    <div class="sidebar-nav-item">
+      <a href="/about" class="sidebar-nav-link">
+        <i class="fas fa-info-circle"></i>
+        <span>About</span>
+      </a>
+    </div>
+    <div class="sidebar-nav-item">
+      <a href="/contact" class="sidebar-nav-link">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+    
+    {{#if user}}
+      <div class="sidebar-category-title">
+        <span>Account</span>
+      </div>
+      <div class="sidebar-category-item">
+        <a href="/dashboard" class="sidebar-category-link">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </div>
+      <div class="sidebar-category-item">
+        <a href="/cocktails/add" class="sidebar-category-link">
+          <i class="fas fa-plus"></i>
+          <span>Add New Recipe</span>
+        </a>
+      </div>
+      <div class="sidebar-category-item">
+        <a href="/users/favorites" class="sidebar-category-link">
+          <i class="fas fa-heart"></i>
+          <span>My Favorites</span>
+        </a>
+      </div>
+      <div class="sidebar-category-item">
+        <a href="/users/profile" class="sidebar-category-link">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </div>
+      <div class="sidebar-category-item">
+        <a href="/users/logout" class="sidebar-category-link">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Log Out</span>
+        </a>
+      </div>
+    {{else}}
+      <div class="sidebar-category-title">
+        <span>Account</span>
+      </div>
+      <div class="sidebar-category-item">
+        <a href="/users/login" class="sidebar-category-link">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Log In</span>
+        </a>
+      </div>
+      <div class="sidebar-category-item">
+        <a href="/users/register" class="sidebar-category-link">
+          <i class="fas fa-user-plus"></i>
+          <span>Register</span>
+        </a>
+      </div>
+    {{/if}}
+  </div>
+  
+  <div class="sidebar-footer">
+    <p class="sidebar-footer-text">© 2025 Luxury Cocktails. All rights reserved.</p>
+  </div>
+</div>

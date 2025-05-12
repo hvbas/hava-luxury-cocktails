@@ -1,0 +1,88 @@
+/* Particles container styling */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+/* Additional styling for cocktail-themed particles */
+.cocktail-particle {
+  position: absolute;
+  opacity: 0;
+  animation: float 15s infinite ease-in-out;
+}
+
+.cocktail-particle.bubble {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+  border-radius: 50%;
+}
+
+.cocktail-particle.ice {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), rgba(200, 200, 255, 0.2));
+  border-radius: 5px;
+  transform: rotate(45deg);
+}
+
+.cocktail-particle.gold {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.8), rgba(212, 175, 55, 0.3));
+  border-radius: 50%;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Hero section enhancement */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.95));
+  z-index: -1;
+}
+
+/* Gold shimmer effect for text */
+.gold-shimmer {
+  background: linear-gradient(to right, var(--gold) 0%, var(--cream) 50%, var(--gold) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}

@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3" data-aos="fade-down" data-aos-duration="1000" style="border-bottom: 1px solid rgba(212, 175, 55, 0.3);">
+  <div class="container">
+    <button class="menu-toggle d-lg-none me-2" type="button" aria-label="Toggle mobile menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <a class="navbar-brand" href="/">
+      <i class="fas fa-glass-martini-alt me-2" style="color: var(--gold);"></i>
+      <span style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 1px;">LUXURY COCKTAILS</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation" style="border: 1px solid var(--gold);">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0" style="border-bottom: 1px solid rgba(212, 175, 55, 0.2); border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 0.5rem 0;">
+        <li class="nav-item px-3">
+          <a class="nav-link {{#if (eq title 'Home')}}active{{/if}}" href="/" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 2px; font-size: 0.85rem; padding: 0.5rem 1rem; position: relative;">
+            <span>HOME</span>
+            <span class="underline" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background-color: var(--gold); transition: width 0.3s ease;"></span>
+          </a>
+        </li>
+        <li class="nav-item dropdown px-3">
+          <a class="nav-link dropdown-toggle {{#if (eq title 'All Recipes')}}active{{/if}}" href="#" id="collectionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 2px; font-size: 0.85rem; padding: 0.5rem 1rem; position: relative;">
+            <span>COLLECTION</span>
+            <span class="underline" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background-color: var(--gold); transition: width 0.3s ease;"></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="collectionDropdown" style="background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--gold-dark); border-radius: 0; padding: 0.5rem 0;">
+            <li><a class="dropdown-item" href="/cocktails" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-glass-martini-alt me-2" style="color: var(--gold);"></i>All Recipes</a></li>
+            <li><hr class="dropdown-divider" style="border-color: rgba(212, 175, 55, 0.3); margin: 0.5rem 0;"></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Non-Alcoholic" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-glass-water me-2" style="color: var(--gold);"></i>Non-Alcoholic</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Vodka" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-bottle-droplet me-2" style="color: var(--gold);"></i>Vodka</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Gin" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-bottle-droplet me-2" style="color: var(--gold);"></i>Gin</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Rum" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-bottle-droplet me-2" style="color: var(--gold);"></i>Rum</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Tequila" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-bottle-droplet me-2" style="color: var(--gold);"></i>Tequila</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Whiskey" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-bottle-droplet me-2" style="color: var(--gold);"></i>Whiskey</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Wine" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-wine-glass me-2" style="color: var(--gold);"></i>Wine</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Liqueur" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-bottle-droplet me-2" style="color: var(--gold);"></i>Liqueur</a></li>
+            <li><a class="dropdown-item" href="/cocktails?category=Other" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-glass-martini-alt me-2" style="color: var(--gold);"></i>Other</a></li>
+          </ul>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link {{#if (eq title 'About Us')}}active{{/if}}" href="/about" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 2px; font-size: 0.85rem; padding: 0.5rem 1rem; position: relative;">
+            <span>ABOUT</span>
+            <span class="underline" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background-color: var(--gold); transition: width 0.3s ease;"></span>
+          </a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link {{#if (eq title 'Contact')}}active{{/if}}" href="/contact" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 2px; font-size: 0.85rem; padding: 0.5rem 1rem; position: relative;">
+            <span>CONTACT</span>
+            <span class="underline" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background-color: var(--gold); transition: width 0.3s ease;"></span>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        {{#if user}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px; padding: 0.5rem 1rem;">
+              <div class="custom-avatar-container me-2">
+                <i class="fas fa-glass-martini-alt"></i>
+              </div>
+              <span style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 0.85rem; color: var(--gold);">{{user.name}}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--gold-dark); border-radius: 0; padding: 0.5rem 0;">
+              <li><a class="dropdown-item" href="/dashboard" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-tachometer-alt me-2" style="color: var(--gold);"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="/cocktails/add" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-plus me-2" style="color: var(--gold);"></i>Add New Recipe</a></li>
+              <li><a class="dropdown-item" href="/users/favorites" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-heart me-2" style="color: var(--gold);"></i>My Favorites</a></li>
+              <li><a class="dropdown-item" href="/users/profile" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-user me-2" style="color: var(--gold);"></i>Profile</a></li>
+              <li><hr class="dropdown-divider" style="border-color: rgba(212, 175, 55, 0.3); margin: 0.5rem 0;"></li>
+              <li><a class="dropdown-item" href="/users/logout" style="color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; padding: 0.5rem 1.5rem;"><i class="fas fa-sign-out-alt me-2" style="color: var(--gold);"></i>Log Out</a></li>
+            </ul>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link {{#if (eq title 'Login')}}active{{/if}}" href="/users/login" style="border: 1px solid var(--gold); border-radius: 50px; padding: 0.5rem 1.5rem; margin-right: 0.5rem; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 0.8rem;">
+              <i class="fas fa-sign-in-alt me-1" style="color: var(--gold);"></i> LOGIN
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if (eq title 'Register')}}active{{/if}}" href="/users/register" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--darker-color); border-radius: 50px; padding: 0.5rem 1.5rem; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 0.8rem; font-weight: 500;">
+              <i class="fas fa-user-plus me-1"></i> REGISTER
+            </a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>
