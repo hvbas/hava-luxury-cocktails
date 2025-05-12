@@ -1,7 +1,7 @@
 # Luxury Cocktails - Premium Cocktail Recipe Collection
 
 <p align="center">
-  <img src="public/images/logo.png" alt="Luxury Cocktails Logo" width="300" style="background-color: #000; padding: 10px;">
+  <h2 align="center">🍸 Luxury Cocktails 🍹</h2>
 </p>
 
 ## Project Description
