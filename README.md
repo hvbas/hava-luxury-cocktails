@@ -1,6 +1,8 @@
 # Luxury Cocktails - Premium Cocktail Recipe Collection
 
-![Luxury Cocktails Logo](public/images/logo.png)
+<p align="center">
+  <img src="public/images/logo.png" alt="Luxury Cocktails Logo" width="300" style="background-color: #000; padding: 10px;">
+</p>
 
 ## Project Description
 Luxury Cocktails is an elegant web application designed for cocktail enthusiasts to discover, share, and curate premium cocktail recipes. With its sophisticated dark and gold theme, the application provides a luxurious experience for users to explore the world of high-end mixology. Built with Node.js using MVC architecture and Server-Side Rendering (SSR), it offers a seamless and responsive user experience.
@@ -151,10 +153,6 @@ We welcome contributions to enhance the Luxury Cocktails experience. Please foll
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ---
 
-<p align="center">Crafted with passion for cocktail enthusiasts</p>
+<p align="center">Crafted with passion by <strong>Hava Basaslan</strong> for cocktail enthusiasts</p>
